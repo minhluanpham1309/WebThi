@@ -1,0 +1,5 @@
+1. Chạy File Dethi.sql trong foleder database trước.
+2. Mở file demau.sln
+3. Trong visual studio có Model, trong Model có folder EF xóa tất cả file trong đó.
+4. Click phải vào EF chọn add -> Add item -> Ado.net Identity để add những đối tượng identity vào.
+Nếu lỗi cài teamview và liên hệ mình qua FB
