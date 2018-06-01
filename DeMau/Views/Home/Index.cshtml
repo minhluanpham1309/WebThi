@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Model.EF.User>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-10 col-md-offset-1" style="border: 2px solid" >
+	
+
+		<div class="row" style="background-color : cornflowerblue ">
+			<div class="label col-md-9 text-uppercase" style="font-size: 20px; height: 50px"><strong>Quản lý user</strong></div>
+			<div class="add_user col-md-3">@Html.ActionLink("Thêm User", "Create")</div>
+		</div>
+		<div class="row text-center" style="background-color : cornflowerblue ">
+			<div class="id_feild col-md-1">ID</div>
+			<div class="id_username col-md-1">Username</div>
+			<div class="id_fullname col-md-2">Fullname</div>
+			<div class="id_stt col-md-2">status</div>
+			<div class="id_address col-md-2">Addess</div>
+			<div class="id_phone col-md-2">Phone</div>
+			<div class="id_phone col-md-1">Sửa</div>
+			<div class="id_delete col-md-1" style="background-color: none">Delete</div>
+			<div class="clearfix"></div>
+		</div>
+		@foreach (var item in Model)
+		{
+		<div class="row text-center" id="row-@item.ID" style="height: 30px; ">
+			<div class="id_feild col-md-1">@item.ID</div>
+			<div class="id_username col-md-1">@item.Username</div>
+			<div class="id_fullname col-md-2">@item.Fullname</div>
+			<div class="id_stt col-md-2"><a href="#" class="btn-active" data-id="@item.ID">@(item.Status ? "Kích hoạt" : "Đóng")</a></div>
+			<div class="id_address col-md-2">@item.Address</div>
+			<div class="id_phone col-md-2">@item.Phone</div>
+			<div class="id_address col-md-1">@Html.ActionLink("Sửa", "Edit", new { @id = item.ID})</div>
+			<div class="id_delete col-md-1" style="background-color: none!important">
+				<input data-id="@item.ID" type="checkbox" value="false" />
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		}
+	
+</div>
+@section scripts{
+	<script>
+		$(document).ready(function () {
+			$("input[type='checkbox']").click(function () {
+				var btn = $(this).data("id");
+				if ($(this).is(":checked") == true) {
+					$.post("Home/Delete", { id: btn }, function () {
+						$("#row-" + btn).remove();
+					});
+				}
+			});
+			$(".btn-active").click(function () {
+				var btn = $(this).data("id");
+				$.post("Home/ChangeStatus", { id: btn }, function (result) {
+					if (result.status == true)
+						$(".btn-active").text("Kích hoạt");
+					else
+						$(".btn-active").text("Đóng");
+				});
+			});
+		});
+		</script>
+	<style>
+	</style>
+	}

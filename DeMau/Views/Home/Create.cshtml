@@ -1,0 +1,98 @@
+﻿@model Model.EF.User
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="container">
+
+	<div class="form-horizontal col-md-6 col-md-offset-3">
+		<div class="row" style="background-color: cadetblue">
+			<h4 >Tạo người dùng mới</h4>
+		</div>
+		<hr />
+		<div class="row" style="font-size: large">
+			<div class="col-md-6" style="padding-bottom:10px; padding-right: 10px; float:right;">@Html.ActionLink("Danh sách người dùng", "Index", "Home")</div>
+		</div>
+		<div class="row">
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			
+				<div class="form-group col-md-offset-2">
+					@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group col-md-offset-2">
+					@Html.LabelFor(model => model.Fullname, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group col-md-offset-2">
+					@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group col-md-offset-2">
+					@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group col-md-offset-2">
+					@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						<div class="checkbox col-md-offset-1">
+							@Html.CheckBoxFor(model => model.Status)
+							@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				</div>
+		
+		</div>
+		<div class="row">
+			<div class="form-group col-md-offset-2">
+				<div class="col-md-offset-2 col-md-3">
+					<input type="submit" value="Create" class="btn btn-default" />
+				</div>
+				<div class="col-md-3">
+					<input type="button" value="Cancel" class="btn btn-default" />
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+    
+}
+
+@section scripts{
+	<style>
+		.form-horizontal{
+			border: 1px solid;
+		}
+		div .form-group{
+			padding-left: 20%;
+		}
+	</style>
+	<script>
+		$("input[type='button']").click(function () {
+			window.location = 'Index';
+		});
+	</script>
+	}

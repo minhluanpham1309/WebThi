@@ -1,0 +1,84 @@
+﻿@model Model.EF.User
+
+@{
+	ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<div class="container">
+
+		<div class="form-horizontal col-md-6 col-md-offset-3">
+			<div class="row" style="background-color: cadetblue">
+				<h4>Sửa thông tin người dùng</h4>
+			</div>
+			<hr />
+			<div class="row" style="font-size: large">
+				<div class="col-md-6" style="padding-bottom:10px; padding-right: 10px; float:right;">@Html.ActionLink("Danh sách người dùng", "Index", "Home")</div>
+			</div>
+			<div class="row">
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Fullname, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="form-group col-md-offset-2">
+					<div class="col-md-offset-2 col-md-3">
+						<input type="submit" value="Create" class="btn btn-default" />
+					</div>
+					<div class="col-md-3">
+						<input type="button" value="Cancel" class="btn btn-default" />
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+}
+
+@section scripts{
+	<style>
+		.form-horizontal {
+			border: 1px solid;
+		}
+
+		div .form-group {
+			padding-left: 20%;
+		}
+	</style>
+	<script>
+		$("input[type='button']").click(function () {
+			window.location = 'Index';
+		});
+	</script>
+}
